@@ -419,3 +419,8 @@ Estas pruebas garantizan:
 - Ejecutar los tests con informe de cobertura (previamente configurado en pom.xml): `mvn test`
 
 </details>
+
+
+## Especificación
+### Casos de uso
+![Casos de uso](doc\diagrama_caso_uso.png)
