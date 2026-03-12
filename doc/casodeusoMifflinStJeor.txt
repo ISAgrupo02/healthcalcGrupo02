@@ -1,14 +1,33 @@
 CASO DE USO-MIFFLIN ST.JEOR 
 
-Calculo de metabolismo basal con Mifflin St.Jeor
+Descripción: Calculo de metabolismo basal con Mifflin St.Jeor
 
--ACTOR: Usuario de la app
--ÁMBITO: Aplicación de cálculo nutricional
--NIVEL: Objetivo del usuario
--STAKEHOLDERS: Usuario, Nutricionista/especialista
--CONDICIONES PREVIAS: El usuario ha introducido previamente el peso, la altura, la edad y el sexo.
--GARANTÍAS MÍNIMAS: En ausencia de fallos, el sistema notifica al usuario y lanza un error, no calcula el BMR.
--GARANTÍA DE ÉXITO: El sistema calcula y muestra el metabolismo basal de manera efectiva y correcta.
--DISPARADOR: El usuario debe pulsar un botón de inicio por ejemplo llamado “Calcular metabolismo basal”.
--ESCENARIO PRINCIPAL: El ususario introduce sus datos (peso, altura, edad y sexo), posteriormente el sistema valida  esos mismos datos, una vez validados los datos el sistema aplica la ecuación de Mifflin St-Jeor y obtiene el BMR que posteriormente mostrará al usuario.
--EXTENSIONES: En caso de que el usuario introduzca los datos inválidos el sistema debe mostrar un mensaje de error por pantalla.
+Actor principal: Usuario de la app
+
+Ámbito: Sistema HealthCalc
+
+Nivel: Objetivo del usuario
+
+Stakeholders e intereses: Usuario, Nutricionista/especialista
+
+Precondiciones: El usuario ha introducido previamente el peso, la altura, la edad y el sexo.
+
+Garantía mínima: En ausencia de fallos, el sistema notifica al usuario y lanza un error, no calcula el BMR.
+
+Garantía de éxito: El sistema calcula y muestra el metabolismo basal de manera efectiva y correcta.
+
+Disparador: El usuario debe pulsar un botón de inicio por ejemplo llamado “Calcular metabolismo basal”.
+
+Escenario principaL:
+1. El usuario introduce su peso.
+2. El usuario introduce su altura.
+3. El usuario introduce su edad.
+4. El usuario selecciona su sexo.
+5. El sistema valida los datos introducidos.
+6. El sistema aplica la ecuación de Mifflin St Jeor.
+7. El sistema calcula el metabolismo basal (BMR).
+8. El sistema muestra el resultado al usuario.
+
+Extensiones: 5a. Datos erróneos
+- El sistema muestra un mensaje de error indicando que los
+  datos introducidos no son válidos.
