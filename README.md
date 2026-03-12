@@ -423,4 +423,4 @@ Estas pruebas garantizan:
 
 ## Especificación
 ### Casos de uso
-![Casos de uso](doc\diagrama_caso_uso.png)
+![Casos de uso](doc/diagrama_caso_uso.png)
