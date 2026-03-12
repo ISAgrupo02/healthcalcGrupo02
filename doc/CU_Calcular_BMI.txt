@@ -1,0 +1,18 @@
+ACTOR: Usuario de la app
+ÁMBITO: Aplicación de cálculo de salud
+NIVEL: Objetivo del usuario
+STAKEHOLDERS: Usuario, médico/nutricionista/especialista
+CONDICIONES PREVIAS: El usuario ha introducido previamente el peso y la altura.
+GARANTÍAS MÍNIMAS: Si los datos introducidos no son válidos, el sistema informa del error y no realiza el cálculo del BMI.
+GARANTÍA DE ÉXITO: El sistema calcula y muestra correctamente el Índice de Masa Corporal del usuario.
+DISPARADOR: El usuario pulsa un botón, por ejemplo, llamado “Calcular BMI”.
+ESCENARIO PRINCIPAL:
+El usuario introduce su peso y su altura.
+El sistema valida los datos introducidos.
+El sistema aplica la fórmula del BMI: peso (kg) / altura² (m).
+El sistema obtiene el resultado.
+El sistema muestra el valor del BMI al usuario.
+EXTENSIONES:
+Si el usuario introduce un peso inválido, el sistema muestra un mensaje de error.
+Si el usuario introduce una altura inválida o igual a 0, el sistema muestra un mensaje de error.
+Si los datos están fuera de los límites permitidos, el sistema rechaza el cálculo.
