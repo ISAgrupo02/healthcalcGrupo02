@@ -426,5 +426,5 @@ Estas pruebas garantizan:
 ![Casos de uso](doc/diagrama_caso_uso.png)
 Enlaces a las descripciones de los casos de uso de las tres métricas dadas:
 
--Mifflin St.Jeor: doc
+-Mifflin St.Jeor: https://github.com/ISAgrupo02/healthcalcGrupo02/tree/p2/doc
 
