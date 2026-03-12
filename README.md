@@ -424,3 +424,7 @@ Estas pruebas garantizan:
 ## Especificación
 ### Casos de uso
 ![Casos de uso](doc/diagrama_caso_uso.png)
+Enlaces a las descripciones de los casos de uso de las tres métricas dadas:
+
+-Mifflin St.Jeor: doc
+
