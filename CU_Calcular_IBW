@@ -1,0 +1,45 @@
+ID: CU-01
+
+Caso de Uso: Calcular IBW (Ideal Body Weight)
+
+Descripción: 
+Este caso de uso permite al usuario calcular su peso corporal ideal a partir de su altura y sexo utilizando la fórmula implementada en el sistema HealthCalc.
+
+Actor principal: Usuario
+
+Ámbito: Sistema HealthCalc
+
+Nivel: Objetivo de usuario
+
+Interesados e intereses: 
+Usuario: quiere calcular su peso corporal ideal para conocer mejor su estado de salud.
+
+Precondiciones:
+- El sistema HealthCalc está en funcionamiento.
+- El usuario tiene acceso a la calculadora de salud.
+
+Garantía de éxito:
+El sistema calcula correctamente el peso corporal ideal y muestra el resultado al usuario.
+
+Garantía mínima:
+Si los datos introducidos no son válidos, el sistema muestra un mensaje de error y no realiza el cálculo.
+
+Disparador:
+El usuario selecciona la opción de calcular IBW.
+
+Escenario principal:
+1. El usuario introduce su altura en centímetros.
+2. El usuario introduce su sexo (male o female).
+3. El sistema valida los datos introducidos.
+4. El sistema aplica la fórmula de cálculo del IBW.
+5. El sistema muestra el resultado al usuario.
+
+Extensiones:
+
+3a. Altura negativa o igual a cero
+- El sistema muestra un mensaje de error indicando que la altura no es válida.
+
+3b. Sexo inválido
+- El sistema muestra un mensaje de error indicando que el sexo debe ser "male" o "female".
+
+
