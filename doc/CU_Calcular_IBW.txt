@@ -1,5 +1,3 @@
-ID: CU-01
-
 Caso de Uso: Calcular IBW (Ideal Body Weight)
 
 Descripción: 
@@ -19,13 +17,13 @@ Precondiciones:
 - El usuario tiene acceso a la calculadora de salud.
 
 Garantía de éxito:
-El sistema calcula correctamente el peso corporal ideal y muestra el resultado al usuario.
+El sistema calcula correctamente el peso corporal ideal utilizando la fórmula implementada y muestra el resultado al usuario.
 
 Garantía mínima:
 Si los datos introducidos no son válidos, el sistema muestra un mensaje de error y no realiza el cálculo.
 
 Disparador:
-El usuario selecciona la opción de calcular IBW.
+El usuario selecciona la opción de calcular IBW en la calculadora de salud.
 
 Escenario principal:
 1. El usuario introduce su altura en centímetros.
@@ -36,10 +34,6 @@ Escenario principal:
 
 Extensiones:
 
-3a. Altura negativa o igual a cero
-- El sistema muestra un mensaje de error indicando que la altura no es válida.
+3a. Altura negativa o igual a cero: El sistema muestra un mensaje de error indicando que la altura no es válida y permite al usuario volver a introducir la altura. El flujo vuelve al paso 1.
 
-3b. Sexo inválido
-- El sistema muestra un mensaje de error indicando que el sexo debe ser "male" o "female".
-
-
+3b. Sexo inválido: El sistema muestra un mensaje de error indicando que el sexo debe ser "male" o "female" y permite al usuario volver a introducir el sexo. El flujo vuelve al paso 2.
