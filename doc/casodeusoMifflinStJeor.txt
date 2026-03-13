@@ -8,7 +8,9 @@ Actor principal: Usuario de la app
 
 Nivel: Objetivo del usuario
 
-Stakeholders e intereses: Usuario, Nutricionista/especialista
+Stakeholders e intereses: 
+1.El usuario de la aplicación el cual pretende estimar sus necesidades calóricas diarias para así gestionar su peso y su bienestar.
+2.El nutricionista o especialista pretende usar la aplicación como herramienta para apoyar la planificación nutricional de sus pacientes.
 
 Precondiciones: El usuario ha introducido previamente el peso, la altura, la edad y el sexo.
 
