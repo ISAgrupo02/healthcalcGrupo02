@@ -428,3 +428,4 @@ Enlaces a las descripciones de los casos de uso de las tres métricas dadas:
 
 -Mifflin St.Jeor: https://github.com/ISAgrupo02/healthcalcGrupo02/blob/p2/doc/casodeusoMifflinStJeor.txt
 - [BMI](doc/CU_Calcular_BMI.txt)
+- [IBW](doc/CU_Calcular_IBW.txt)
