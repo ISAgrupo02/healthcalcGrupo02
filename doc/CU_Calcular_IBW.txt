@@ -11,6 +11,7 @@ Nivel: Objetivo de usuario
 
 Interesados e intereses: 
 Usuario: quiere calcular su peso corporal ideal para conocer mejor su estado de salud.
+Profesional sanitario (nutricionista o médico): puede utilizar el valor de IBW como referencia para evaluar el estado nutricional del paciente o ajustar recomendaciones y tratamientos.
 
 Precondiciones:
 - El sistema HealthCalc está en funcionamiento.
