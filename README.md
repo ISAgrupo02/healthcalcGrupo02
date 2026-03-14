@@ -427,6 +427,8 @@ Estas pruebas garantizan:
 
 Enlaces a las descripciones de los casos de uso de las tres métricas dadas:
 
--[BMR](doc/CU_Calcular_BMR.txt)
+- [BMR](doc/CU_Calcular_BMR.txt)
+  
 - [BMI](doc/CU_Calcular_BMI.txt)
+  
 - [IBW](doc/CU_Calcular_IBW.txt)
