@@ -464,3 +464,21 @@ para conocer si mi peso está en un rango adecuado según mi altura.
 [bmi.feature](python-project-healthcalc/features/bmi.feature)
 
 </details>
+<details>
+<summary><b>BMI Full - Clasificación completa del Índice de Masa Corporal</b></summary>
+
+### Historia de usuario
+Como usuario de la calculadora de salud,  
+quiero conocer la clasificación completa de mi índice de masa corporal,  
+para entender mejor mi estado nutricional.
+
+### Escenarios
+
+- Clasificación correcta del BMI Full
+- BMI inválido por valor no permitido
+- BMI no es un número real finito
+
+### Fichero feature  
+[bmi_full.feature](python-project-healthcalc/features/bmi_full.feature)
+
+</details>
