@@ -482,3 +482,25 @@ para entender mejor mi estado nutricional.
 [bmi_full.feature](python-project-healthcalc/features/bmi_full.feature)
 
 </details>
+
+<details>
+<summary><b>BMR - Basal Metabolic Rate (Mifflin-St Jeor)</b></summary>
+
+### Historia de usuario
+Como usuario de la calculadora de salud,  
+quiero calcular mi tasa metabólica basal usando la fórmula de Mifflin-St Jeor,  
+para estimar las calorías mínimas que necesito en estado de reposo.
+
+### Escenarios
+
+- Cálculo válido para hombre  
+- Cálculo válido para mujer  
+- Peso negativo  
+- Peso igual a cero  
+- Altura negativa  
+- Altura igual a cero  
+
+### Fichero feature  
+[bmr.feature](python-project-healthcalc/features/bmr.feature)
+
+</details>
