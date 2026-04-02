@@ -461,6 +461,6 @@ para conocer si mi peso está en un rango adecuado según mi altura.
 - Altura igual a cero 
 
 ### Fichero feature  
-[bmi.feature](features/bmi.feature)
+[bmi.feature](python-project-healthcalc/features/bmi.feature)
 
 </details>
