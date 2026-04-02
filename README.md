@@ -442,3 +442,25 @@ para conocer un peso recomendado según mi altura y sexo.
 [ibw.feature](python-project-healthcalc/features/ibw.feature)
 
 </details>
+
+<details>
+<summary><b>BMI - Body Mass Index (Índice de Masa Corporal)</b></summary>
+
+### Historia de usuario
+Como usuario de la calculadora de salud,
+quiero calcular mi índice de masa corporal,
+para conocer si mi peso está en un rango adecuado según mi altura.
+
+### Escenarios
+
+- Cálculo válido del BMI
+- Cálculo válido del BMI con otro valor
+- Peso negativo
+- Peso igual a cero
+- Altura negativa
+- Altura igual a cero 
+
+### Fichero feature  
+[bmi.feature](python-project-healthcalc\features\bmi.feature)
+
+</details>
