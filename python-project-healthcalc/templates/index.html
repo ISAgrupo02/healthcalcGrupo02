@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HealthCalc - IBW</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+    <div class="container">
+        <h1>Calculadora de Peso Ideal (IBW)</h1>
+
+        <form method="POST">
+            <div class="form-group">
+                <label>Sexo:</label>
+
+                <label class="radio-label">
+                    <input type="radio" name="sex" value="male"
+                        {% if sex == 'male' %}checked{% endif %}>
+                    Hombre
+                </label>
+
+                <label class="radio-label">
+                    <input type="radio" name="sex" value="female"
+                        {% if sex == 'female' %}checked{% endif %}>
+                    Mujer
+                </label>
+            </div>
+
+            <div class="form-group">
+                <label for="height">Altura (cm):</label>
+                <input
+                    type="number"
+                    step="0.1"
+                    id="height"
+                    name="height"
+                    value="{{ height if height != None else '' }}"
+                    required
+                >
+            </div>
+
+            <button type="submit">Calcular IBW</button>
+        </form>
+
+        {% if result != None %}
+            <div class="result-box">
+                <p>Resultado: <strong>{{ "%.2f"|format(result) }} kg</strong></p>
+                <p>Estado: Peso ideal</p>
+            </div>
+        {% endif %}
+
+        {% if error %}
+            <div class="result-box">
+                <p class="error">Error: {{ error }}</p>
+            </div>
+        {% endif %}
+    </div>
+
+</body>
+</html>
