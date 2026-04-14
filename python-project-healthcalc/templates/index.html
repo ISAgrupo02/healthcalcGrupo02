@@ -3,59 +3,154 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HealthCalc - IBW</title>
-
+    <title>HealthCalc</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
 
-    <div class="container">
-        <h1>Calculadora de Peso Ideal (IBW)</h1>
+    <div class="page-wrapper">
 
-        <form method="POST">
-            <div class="form-group">
-                <label>Sexo:</label>
+        <div class="top-menu">
+            <a href="#" class="metric-btn">BMI</a>
+            <a href="{{ url_for('ibw') }}" class="metric-btn {% if active_page == 'ibw' %}active{% endif %}">IBW</a>
+            <a href="{{ url_for('mifflin') }}" class="metric-btn {% if active_page == 'mifflin' %}active{% endif %}">Mifflin-St.Jeor</a>
+        </div>
 
-                <label class="radio-label">
-                    <input type="radio" name="sex" value="male"
-                        {% if sex == 'male' %}checked{% endif %}>
-                    Hombre
-                </label>
+        {% if active_page == 'ibw' %}
+        <div class="main-panel">
+            <h1>Calculadora de Peso Ideal (IBW)</h1>
 
-                <label class="radio-label">
-                    <input type="radio" name="sex" value="female"
-                        {% if sex == 'female' %}checked{% endif %}>
-                    Mujer
-                </label>
-            </div>
+            <form method="POST" class="metric-form">
+                <div class="form-row ibw-row">
 
-            <div class="form-group">
-                <label for="height">Altura (cm):</label>
-                <input
-                    type="number"
-                    step="0.1"
-                    id="height"
-                    name="height"
-                    value="{{ height if height != None else '' }}"
-                    required
-                >
-            </div>
+                    <div class="field-group sex-group">
+                        <label class="field-title">Sexo</label>
 
-            <button type="submit">Calcular IBW</button>
-        </form>
+                        <label class="radio-option">
+                            <input type="radio" name="sex" value="female"
+                                {% if sex == 'female' %}checked{% endif %}>
+                            Mujer
+                        </label>
 
-        {% if result != None %}
-            <div class="result-box">
-                <p>Resultado: <strong>{{ "%.2f"|format(result) }} kg</strong></p>
-                <p>Estado: Peso ideal</p>
-            </div>
+                        <label class="radio-option">
+                            <input type="radio" name="sex" value="male"
+                                {% if sex == 'male' %}checked{% endif %}>
+                            Hombre
+                        </label>
+                    </div>
+
+                    <div class="field-group">
+                        <label class="field-title" for="height">Altura (cm)</label>
+                        <input
+                            type="number"
+                            step="0.1"
+                            id="height"
+                            name="height"
+                            value="{{ height }}"
+                        >
+                    </div>
+                </div>
+
+                <div class="bottom-row">
+                    <button type="submit" class="calc-btn">CALCULAR</button>
+
+                    <div class="output-box">
+                        {% if result != None %}
+                            <p class="result-text">
+                                <strong>Resultado:</strong>
+                                {{ "%.2f"|format(result) }} kg
+                            </p>
+                        {% endif %}
+
+                        {% if error %}
+                            <p class="error-text">
+                                Error:&nbsp; {{ error }}
+                            </p>
+                        {% endif %}
+                    </div>
+                </div>
+            </form>
+        </div>
         {% endif %}
 
-        {% if error %}
-            <div class="result-box">
-                <p class="error">Error: {{ error }}</p>
-            </div>
+        {% if active_page == 'mifflin' %}
+        <div class="main-panel">
+            <h1>Calculadora de Metabolismo Basal (Mifflin-St Jeor)</h1>
+
+            <form method="POST" class="metric-form">
+                <div class="form-row">
+
+                    <div class="field-group sex-group">
+                        <label class="field-title">Sexo</label>
+
+                        <label class="radio-option">
+                            <input type="radio" name="sex" value="female"
+                                {% if sex == 'female' %}checked{% endif %}>
+                            Mujer
+                        </label>
+
+                        <label class="radio-option">
+                            <input type="radio" name="sex" value="male"
+                                {% if sex == 'male' %}checked{% endif %}>
+                            Hombre
+                        </label>
+                    </div>
+
+                    <div class="field-group">
+                        <label class="field-title" for="height">Altura (cm)</label>
+                        <input
+                            type="number"
+                            step="0.1"
+                            id="height"
+                            name="height"
+                            value="{{ height }}"
+                        >
+                    </div>
+
+                    <div class="field-group">
+                        <label class="field-title" for="weight">Peso (kg)</label>
+                        <input
+                            type="number"
+                            step="0.1"
+                            id="weight"
+                            name="weight"
+                            value="{{ weight }}"
+                        >
+                    </div>
+
+                    <div class="field-group">
+                        <label class="field-title" for="age">Edad</label>
+                        <input
+                            type="number"
+                            id="age"
+                            name="age"
+                            value="{{ age }}"
+                        >
+                    </div>
+                </div>
+
+                <div class="bottom-row">
+                    <button type="submit" class="calc-btn">CALCULAR</button>
+
+                    <div class="output-box">
+                        {% if result != None %}
+                            <p class="result-text">
+                                <strong>Resultado:</strong>
+                                {{ "%.2f"|format(result) }} kcal/día
+                            </p>
+                        {% endif %}
+
+                        {% if error %}
+                            <p class="error-text">
+                                Error:&nbsp; {{ error }}
+                            </p>
+                        {% endif %}
+                    </div>
+                </div>
+            </form>
+        </div>
         {% endif %}
+
     </div>
 
 </body>

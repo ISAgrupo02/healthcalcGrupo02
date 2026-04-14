@@ -1,97 +1,168 @@
-/* Estilos generales */
 body {
+    margin: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f4f7f6;
+    background-color: #efefef;
+    color: #222;
+}
+
+.page-wrapper {
+    width: 100%;
+    min-height: 100vh;
+    padding: 30px 20px 60px;
+    box-sizing: border-box;
+}
+
+.top-menu {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 80px;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.metric-btn {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    margin: 0;
+    width: 160px;
+    height: 85px;
+    text-decoration: none;
+    background-color: #df9696;
+    color: #222;
+    border: 2px solid #444;
+    border-radius: 8px;
+    box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.35);
+    font-size: 16px;
 }
 
-/* Contenedor principal */
-.container {
-    background-color: white;
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+.metric-btn.active {
+    background-color: #d92525;
+    color: white;
+    font-weight: bold;
+}
+
+.main-panel {
+    max-width: 950px;
+    margin: 0 auto;
+}
+
+h1 {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 55px;
+}
+
+.metric-form {
     width: 100%;
-    max-width: 400px;
+}
+
+.form-row {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 50px;
+    flex-wrap: wrap;
+    margin-bottom: 110px;
+}
+
+.ibw-row {
+    gap: 90px;
+}
+
+.field-group {
+    display: flex;
+    flex-direction: column;
+    min-width: 110px;
+}
+
+.field-title {
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 24px;
     text-align: center;
 }
 
-/* Título */
-h1 {
-    color: #333;
-    margin-bottom: 20px;
+.sex-group {
+    min-width: 130px;
 }
 
-/* Formulario */
-form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-/* Labels generales */
-label {
-    font-weight: bold;
-    text-align: left;
-}
-
-/* Grupos */
-.form-group {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-/* Radios */
-.radio-label {
-    font-weight: normal;
+.radio-option {
     display: flex;
     align-items: center;
     gap: 8px;
+    margin-bottom: 10px;
+    font-size: 16px;
 }
 
-input[type="radio"] {
-    margin-right: 5px;
-}
-
-/* Input altura */
 input[type="number"] {
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 6px;
+    width: 110px;
+    padding: 8px 10px;
     font-size: 16px;
+    border: 2px solid #555;
+    background-color: #efefef;
+    box-sizing: border-box;
 }
 
-/* Botón */
-button {
-    background-color: #28a745;
-    color: white;
-    padding: 10px;
-    border: none;
-    border-radius: 6px;
+.bottom-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 120px;
+    flex-wrap: wrap;
+}
+
+.calc-btn {
+    padding: 14px 28px;
     font-size: 16px;
+    border: 2px solid #555;
+    border-radius: 8px;
+    background-color: #f8f8f8;
     cursor: pointer;
-    transition: background-color 0.3s;
-    margin-top: 10px;
+    box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.25);
 }
 
-button:hover {
-    background-color: #218838;
+.calc-btn:hover {
+    background-color: #ececec;
 }
 
-/* Resultado */
-.result-box {
-    margin-top: 20px;
-    padding-top: 20px;
-    border-top: 2px solid #eee;
+.output-box {
+    min-width: 320px;
+    max-width: 420px;
 }
 
-/* Error */
-.error {
-    color: #dc3545;
-    font-weight: bold;
+.result-text {
+    font-size: 20px;
+    margin: 0;
+}
+
+.error-text {
+    font-size: 20px;
+    margin: 0;
+    color: red;
+}
+
+@media (max-width: 768px) {
+    .top-menu {
+        margin-bottom: 40px;
+    }
+
+    h1 {
+        font-size: 20px;
+        margin-bottom: 35px;
+    }
+
+    .form-row {
+        gap: 25px;
+        margin-bottom: 50px;
+    }
+
+    .bottom-row {
+        gap: 30px;
+    }
+
+    .metric-btn {
+        width: 140px;
+        height: 75px;
+    }
 }
