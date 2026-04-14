@@ -139,5 +139,71 @@ def mifflin():
     )
 
 
+@app.route('/bmi', methods=['GET', 'POST'])
+def bmi():
+    result = None
+    classification = None
+    error = None
+    height = ''
+    weight = ''
+    age = ''
+    sex = ''
+
+    if request.method == 'POST':
+        height = request.form.get('height', '').strip()
+        weight = request.form.get('weight', '').strip()
+
+        try:
+            if height == '':
+                raise ValueError("altura_nula")
+
+            if weight == '':
+                raise ValueError("peso_nulo")
+
+            height_value = float(height)
+            weight_value = float(weight)
+
+            if height_value <= 0:
+                raise InvalidHealthDataException("La altura no puede ser nula o negativa.")
+
+            if weight_value <= 0:
+                raise InvalidHealthDataException("El peso no puede ser nulo o negativo.")
+
+            height_m = height_value / 100
+            result = weight_value / (height_m ** 2)
+
+            if result < 18.5:
+                classification = "Bajo peso"
+            elif result < 25:
+                classification = "Peso normal"
+            elif result < 30:
+                classification = "Sobrepeso"
+            else:
+                classification = "Obesidad"
+
+        except ValueError as e:
+            if str(e) == "altura_nula":
+                error = "La altura no puede ser nula."
+            elif str(e) == "peso_nulo":
+                error = "El peso no puede ser nulo."
+            else:
+                error = "Altura y peso deben ser números válidos."
+
+        except InvalidHealthDataException as e:
+            error = str(e)
+
+    return render_template(
+        'index.html',
+        result=result,
+        classification=classification,
+        error=error,
+        height=height,
+        weight=weight,
+        age=age,
+        sex=sex,
+        active_page='bmi'
+    )
+
+
 if __name__ == '__main__':
     app.run(debug=True)

@@ -11,7 +11,7 @@
     <div class="page-wrapper">
 
         <div class="top-menu">
-            <a href="#" class="metric-btn">BMI</a>
+            <a href="{{ url_for('bmi') }}" class="metric-btn {% if active_page == 'bmi' %}active{% endif %}">BMI</a>
             <a href="{{ url_for('ibw') }}" class="metric-btn {% if active_page == 'ibw' %}active{% endif %}">IBW</a>
             <a href="{{ url_for('mifflin') }}" class="metric-btn {% if active_page == 'mifflin' %}active{% endif %}">Mifflin-St.Jeor</a>
         </div>
@@ -151,7 +151,60 @@
         </div>
         {% endif %}
 
-    </div>
+{% if active_page == 'bmi' %}
+<div class="main-panel">
+    <h1>Calculadora de BMI</h1>
 
-</body>
-</html>
+    <form method="POST" class="metric-form">
+        <div class="form-row">
+
+            <div class="field-group">
+                <label class="field-title" for="height">Altura (m)</label>
+                <input
+                    type="number"
+                    step="0.1"
+                    id="height"
+                    name="height"
+                    value="{{ height }}"
+                >
+            </div>
+
+            <div class="field-group">
+                <label class="field-title" for="weight">Peso (kg)</label>
+                <input
+                    type="number"
+                    step="0.1"
+                    id="weight"
+                    name="weight"
+                    value="{{ weight }}"
+                >
+            </div>
+
+        </div>
+
+        <div class="bottom-row">
+            <button type="submit" class="calc-btn">CALCULAR</button>
+
+            <div class="output-box">
+                {% if result != None %}
+                    <p class="result-text">
+                        <strong>BMI:</strong>
+                        {{ "%.2f"|format(result) }}
+                    </p>
+
+                    <p class="result-text">
+                        <strong>Clasificación:</strong>
+                        {{ classification }}
+                    </p>
+                {% endif %}
+
+                {% if error %}
+                    <p class="error-text">
+                        Error:&nbsp; {{ error }}
+                    </p>
+                {% endif %}
+            </div>
+        </div>
+    </form>
+</div>
+{% endif %}
