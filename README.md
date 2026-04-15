@@ -390,7 +390,6 @@ Estas pruebas garantizan:
 5. Instalar dependencias: `pip install -r requirements.txt`
 
 ### Ejecución
-### 🚀 Ejecución
 
 Una vez instalado el entorno y las dependencias, se puede ejecutar la aplicación web con el siguiente comando:
 
@@ -398,8 +397,10 @@ Una vez instalado el entorno y las dependencias, se puede ejecutar la aplicació
 python main_web.py
 
 -Una vez ejecutado el comando, podemos acceder a la aplicación pulsando el enlace resultante en la terminal: http://127.0.0.1:5000/
+
 -Para la ejecución de los tests usamos el comando: pytest -v
--Conviene tener instalada la librería "flask" para la ejecución de la app, si no la tiene instalada, la puede instalar con el comando corresponidente en la terminal: pip install flask
+
+-Conviene tener instalada la librería "flask" para la ejecución de la app, si no la tiene instalada, la puede instalar con el comando correspondiente en la terminal: pip install flask
 </details>
 
 
