@@ -164,10 +164,10 @@ def bmi():
             weight_value = float(weight)
 
             if height_value <= 0:
-                raise InvalidHealthDataException("La altura no puede ser nula o negativa.")
+                raise InvalidHealthDataException("La altura debe ser un valor positivo.")
 
             if weight_value <= 0:
-                raise InvalidHealthDataException("El peso no puede ser nulo o negativo.")
+                raise InvalidHealthDataException("El peso debe ser un valor positivo.")
 
             result = weight_value / (height_value ** 2)
 
@@ -182,9 +182,9 @@ def bmi():
 
         except ValueError as e:
             if str(e) == "altura_nula":
-                error = "La altura no puede ser nula."
+                error = "Debe seleccionar una altura."
             elif str(e) == "peso_nulo":
-                error = "El peso no puede ser nulo."
+                error = "Debe seleccionar un peso."
             else:
                 error = "Altura y peso deben ser números válidos."
 
