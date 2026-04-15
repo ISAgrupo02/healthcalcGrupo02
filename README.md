@@ -381,25 +381,25 @@ Estas pruebas garantizan:
 
 ### Preparación del entorno
 1. Clonar este repositorio: `git clone https://github.com/IngSoftAvanz/healthcalc.git`
-2. Desplazarse a la carpeta del proyecto:
+2. Desplazarse a la carpeta del proyecto:  
    `cd healthcalc/python-project-healthcalc`
-3. Crear entorno virtual: `python -m venv env` (esto crea una carpeta `env` para el entorno virtual)
+3. Crear entorno virtual: `python -m venv env`
 4. Activar el entorno virtual:
-    - En Windows: `.\env\Scripts\Activate`
-    - En Linux: `. env/bin/activate`
+   - En Windows: `.\env\Scripts\Activate`
+   - En Linux: `. env/bin/activate`
 5. Instalar dependencias: `pip install -r requirements.txt`
 
 ### Ejecución
-### 🚀 Ejecución
 
 Una vez instalado el entorno y las dependencias, se puede ejecutar la aplicación web con el siguiente comando:
 
-```bash
 python main_web.py
 
 -Una vez ejecutado el comando, podemos acceder a la aplicación pulsando el enlace resultante en la terminal: http://127.0.0.1:5000/
+
 -Para la ejecución de los tests usamos el comando: pytest -v
--Conviene tener instalada la librería "flask" para la ejecución de la app, si no la tiene instalada, la puede instalar con el comando corresponidente en la terminal: pip install flask
+
+-Conviene tener instalada la librería "flask" para la ejecución de la app, si no la tiene instalada, la puede instalar con el comando correspondiente en la terminal: pip install flask
 </details>
 
 
