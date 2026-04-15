@@ -393,7 +393,6 @@ Estas pruebas garantizan:
 
 Una vez instalado el entorno y las dependencias, se puede ejecutar la aplicación web con el siguiente comando:
 
-```bash
 python main_web.py
 
 -Una vez ejecutado el comando, podemos acceder a la aplicación pulsando el enlace resultante en la terminal: http://127.0.0.1:5000/
