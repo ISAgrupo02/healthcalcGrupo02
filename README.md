@@ -518,7 +518,5 @@ A continuación se muestra una captura de la aplicación web en ejecución.
 ### Ejemplo de uso
 
 ![BMI App](doc/gui/BMI_APP_OK.png)
-
-![IBW App](doc/gui/IBW_APP_OK.png)
-
-![BMR App](doc/gui/MIFFLIN_ST_JEOR_APP_OK.png)
+![IBW App](doc/gui/IBW_APP_OK.PNG)
+![BMR App](doc/gui/MIFFLIN_APP_OK.PNG)
