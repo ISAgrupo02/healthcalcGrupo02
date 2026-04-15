@@ -169,8 +169,7 @@ def bmi():
             if weight_value <= 0:
                 raise InvalidHealthDataException("El peso no puede ser nulo o negativo.")
 
-            height_m = height_value / 100
-            result = weight_value / (height_m ** 2)
+            result = weight_value / (height_value ** 2)
 
             if result < 18.5:
                 classification = "Bajo peso"
