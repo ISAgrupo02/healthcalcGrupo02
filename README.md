@@ -510,3 +510,15 @@ para estimar las calorías mínimas que necesito en estado de reposo.
 [bmr.feature](python-project-healthcalc/features/bmr.feature)
 
 </details>
+
+## Interfaz Gráfica de Usuario
+
+A continuación se muestra una captura de la aplicación web en ejecución.
+
+### Ejemplo de uso
+
+![BMI App](doc/gui/BMI_APP_OK.png)
+
+![IBW App](doc/gui/IBW_APP_OK.png)
+
+![BMR App](doc/gui/MIFFLIN_ST_JEOR_APP_OK.png)
