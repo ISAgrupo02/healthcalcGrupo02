@@ -98,16 +98,16 @@ def mifflin():
                 raise InvalidHealthDataException("El peso debe de tener un valor positivo")
 
             if weight_value == 0:
-                raise InvalidHealthDataException("El peso debe de tener un valor positivo mayor que 0")
+                raise InvalidHealthDataException("El peso debe de tener un valor positivo")
 
             if height_value == 0:
-                raise InvalidHealthDataException("La altura debe de tener un valor positivo mayor que 0")
+                raise InvalidHealthDataException("La altura debe de tener un valor positivo")
 
             if height_value < 0:
                 raise InvalidHealthDataException("La altura debe de tener un valor positivo")
 
             if age_value <= 0:
-                raise InvalidHealthDataException("La edad debe de tener un valor positivo mayor que 0")
+                raise InvalidHealthDataException("La edad debe de tener un valor positivo")
 
             calc = HealthCalcImpl()
             result = calc.bmr(weight_value, height_value, age_value, sex)
