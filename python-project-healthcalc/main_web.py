@@ -1,9 +1,21 @@
 from flask import Flask, render_template, request, redirect, url_for
 
 from healthcalc.health_calc_impl import HealthCalcImpl
+from healthcalc.health_calc_adapter import HealthHospitalAdapter
+from healthcalc.health_stats_proxy import HealthStatsProxy
 from healthcalc.exceptions import InvalidHealthDataException
 
 app = Flask(__name__)
+
+stats_proxy = None
+
+def get_stats_proxy():
+    """Initialize proxy on first use"""
+    global stats_proxy
+    if stats_proxy is None:
+        adapter = HealthHospitalAdapter()
+        stats_proxy = HealthStatsProxy(adapter)
+    return stats_proxy
 
 
 @app.route('/')
@@ -147,11 +159,12 @@ def bmi():
     height = ''
     weight = ''
     age = ''
-    sex = ''
+    sex = 'H'
 
     if request.method == 'POST':
         height = request.form.get('height', '').strip()
         weight = request.form.get('weight', '').strip()
+        sex = request.form.get('sex', 'H').strip()
 
         try:
             if height == '':
@@ -169,16 +182,9 @@ def bmi():
             if weight_value <= 0:
                 raise InvalidHealthDataException("El peso debe ser un valor positivo.")
 
-            result = weight_value / (height_value ** 2)
-
-            if result < 18.5:
-                classification = "Bajo peso"
-            elif result < 25:
-                classification = "Peso normal"
-            elif result < 30:
-                classification = "Sobrepeso"
-            else:
-                classification = "Obesidad"
+            # Use proxy to calculate BMI and track statistics
+            proxy = get_stats_proxy()
+            result, classification = proxy.indiceMasaCorporal(height_value, weight_value, sex)
 
         except ValueError as e:
             if str(e) == "altura_nula":
