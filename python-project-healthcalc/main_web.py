@@ -184,7 +184,7 @@ def bmi():
 
             # Use proxy to calculate BMI and track statistics
             proxy = get_stats_proxy()
-            result, classification = proxy.indiceMasaCorporal(height_value, weight_value, sex)
+            result, classification = proxy.indiceMasaCorporal(height_value, weight_value)
 
         except ValueError as e:
             if str(e) == "altura_nula":

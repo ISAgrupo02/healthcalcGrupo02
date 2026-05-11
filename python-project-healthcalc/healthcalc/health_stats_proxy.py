@@ -2,7 +2,7 @@ from .health_stats import HealthStats
 from .health_calc_interface import HealthHospital
 
 
-class HealthStatsProxy(HealthStats):
+class HealthStatsProxy(HealthStats, HealthHospital):
 
     def __init__(self, servicio: HealthHospital):
         self.servicio = servicio
@@ -13,20 +13,15 @@ class HealthStatsProxy(HealthStats):
         self.numHombres = 0
         self.numMujeres = 0
 
-    def indiceMasaCorporal(self, altura: float, peso: float, genero: str) -> tuple[float, str]:
+    def indiceMasaCorporal(self, altura: float, peso: int) -> tuple[float, str]:
         imc, clasificacion = self.servicio.indiceMasaCorporal(altura, peso)
 
+        # Convertir peso de gramos a kg para promedios
+        peso_kg = peso / 1000
         self.totalAltura += altura
-        self.totalPeso += peso
+        self.totalPeso += peso_kg
         self.totalIMC += imc
         self.totalPacientes += 1
-
-        if genero.upper() == "H":
-            self.numHombres += 1
-        elif genero.upper() == "M":
-            self.numMujeres += 1
-        else:
-            raise ValueError("Error: genero debe ser 'H' o 'M'.")
 
         return imc, clasificacion
 

@@ -10,7 +10,7 @@ class MetaSingleton(type):
         return cls._instances[cls]
 
 
-class HealthCalcImp(HealthCalc, metaclass=MetaSingleton):
+class HealthCalcImpl(HealthCalc, metaclass=MetaSingleton):
 
     def bmi(self, weight: float, height: float) -> float:
         if not isinstance(weight, (int, float)):
