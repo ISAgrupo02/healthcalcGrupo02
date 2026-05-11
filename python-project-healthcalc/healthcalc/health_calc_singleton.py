@@ -1,3 +1,6 @@
+from healthcalc.health_calc_interface import HealthCalc
+
+
 class MetaSingleton(type):
     _instances = {}
 
@@ -7,7 +10,7 @@ class MetaSingleton(type):
         return cls._instances[cls]
 
 
-class HealthCalcImp(metaclass=MetaSingleton):
+class HealthCalcImp(HealthCalc, metaclass=MetaSingleton):
 
     def bmi(self, weight: float, height: float) -> float:
         if not isinstance(weight, (int, float)):
