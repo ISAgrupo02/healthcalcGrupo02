@@ -1,5 +1,5 @@
 from .health_stats import HealthStats
-from .health_calc_interface import HealthHospital
+from .health_hospital_interface import HealthHospital
 
 
 class HealthStatsProxy(HealthStats, HealthHospital):
