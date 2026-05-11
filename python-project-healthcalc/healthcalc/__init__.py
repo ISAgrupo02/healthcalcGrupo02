@@ -1,6 +1,6 @@
 from .exceptions import InvalidHealthDataException
 from .health_calc import HealthCalc
-from .health_calc_singleton import HealthCalcImpl
+from .health_calc_singleton import HealthCalcImplementation
 from .health_stats_proxy import HealthStatsProxy
 from .health_calc_adapter import HealthHospitalAdapter
 

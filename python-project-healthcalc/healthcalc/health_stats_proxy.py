@@ -26,6 +26,13 @@ class HealthStatsProxy(HealthStats, HealthHospital):
         return imc, clasificacion
 
     def pesoCorporalIdeal(self, genero: str, altura: float) -> int:
+        if genero.upper() == "H":
+            self.numHombres += 1
+        elif genero.upper() == "M":
+            self.numMujeres += 1
+        else:
+            raise ValueError("Error: genero debe ser 'H' o 'M'.")
+
         return self.servicio.pesoCorporalIdeal(genero, altura)
 
     def alturaMedia(self) -> float:
