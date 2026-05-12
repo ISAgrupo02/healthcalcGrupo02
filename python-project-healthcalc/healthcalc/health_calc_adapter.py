@@ -1,10 +1,10 @@
 from .health_hospital_interface import HealthHospital
-from .health_calc_singleton import HealthCalcImplementation
+from .health_calc_impl import HealthCalcImpl
 
 class HealthHospitalAdapter(HealthHospital):
 
     def __init__(self):
-        self.calculadora = HealthCalcImplementation()
+        self.calculadora = HealthCalcImpl()
 
     def indiceMasaCorporal(self, altura: float, peso: int) -> tuple[float, str]:
         peso_kg = peso / 1000
