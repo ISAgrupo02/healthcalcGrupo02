@@ -520,3 +520,11 @@ A continuación se muestra una captura de la aplicación web en ejecución.
 ![BMI App](doc/gui/BMI_APP_OK.png)
 ![IBW App](doc/gui/IBW_APP_OK.PNG)
 ![BMR App](doc/gui/MIFFLIN_APP_OK.PNG)
+
+## Práctica 6: Patrones de diseño
+
+### Apartado 3.b: Proxy
+![Diagrama Proxy](design_patterns/proxy_imagen.jpeg)
+
+### Apartado 3.c: Decorator
+![Diagrama Decorator](design_patterns/decorator_imagen.jpeg)
