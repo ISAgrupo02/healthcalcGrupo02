@@ -1,0 +1,56 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Page-1" id="XzQDB6RR97uiBJIQOu-E">
+    <mxGraphModel grid="1" page="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="NKJwvJGwVdoyrJJqCeGJ-1" parent="1" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;fillColor=none;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="&amp;lt;&amp;lt;interface&amp;gt;&amp;gt;&lt;br&gt;&lt;b&gt;HealthCalc&lt;/b&gt;" vertex="1">
+          <mxGeometry height="160" width="210" x="999.6" y="260" as="geometry" />
+        </mxCell>
+        <mxCell id="NKJwvJGwVdoyrJJqCeGJ-2" parent="NKJwvJGwVdoyrJJqCeGJ-1" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="+ bmi(weight: float, height: float) : float&lt;br&gt;+ bmi_classification(bmi: float) : str&lt;br&gt;+ bmi_full_classification(bmi: float) : str&lt;br&gt;+ ibw(height: float, sex: str) : float&lt;br&gt;+ bmr(weight: float, height: float, age: int, sex: str) : float" vertex="1">
+          <mxGeometry height="134" width="210" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="NKJwvJGwVdoyrJJqCeGJ-3" edge="1" parent="1" source="NKJwvJGwVdoyrJJqCeGJ-4" style="endArrow=block;dashed=1;endFill=0;endSize=12;html=1;rounded=0;exitX=1;exitY=0.357;exitDx=0;exitDy=0;exitPerimeter=0;" value="">
+          <mxGeometry relative="1" width="160" as="geometry">
+            <Array as="points" />
+            <mxPoint x="969.6" y="390.39999999999964" as="sourcePoint" />
+            <mxPoint x="999.6" y="330" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="NKJwvJGwVdoyrJJqCeGJ-4" parent="1" style="verticalAlign=top;align=left;overflow=fill;html=1;whiteSpace=wrap;" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&amp;lt;&amp;lt;Singleton&amp;gt;&amp;gt;&lt;br&gt;&lt;b&gt;HealthCalcImpl&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;&lt;span style=&quot;text-align: center;&quot;&gt;- instance : HealthCalcImpl {static}&lt;/span&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;&gt;&lt;pre class=&quot;overflow-visible! px-0!&quot; data-start=&quot;1492&quot; data-end=&quot;1966&quot;&gt;&lt;div class=&quot;relative w-full mt-4 mb-1&quot;&gt;&lt;div class=&quot;&quot;&gt;&lt;div class=&quot;relative&quot;&gt;&lt;div class=&quot;h-full min-h-0 min-w-0&quot;&gt;&lt;div class=&quot;h-full min-h-0 min-w-0&quot;&gt;&lt;div class=&quot;border border-token-border-light border-radius-3xl corner-superellipse/1.1 rounded-3xl&quot;&gt;&lt;div class=&quot;h-full w-full border-radius-3xl bg-token-bg-elevated-secondary corner-superellipse/1.1 overflow-clip rounded-3xl lxnfua_clipPathFallback&quot;&gt;&lt;div class=&quot;relative&quot;&gt;&lt;div class=&quot;pe-11 pt-3&quot;&gt;&lt;div class=&quot;relative z-0 flex max-w-full&quot;&gt;&lt;div id=&quot;code-block-viewer&quot; dir=&quot;ltr&quot; class=&quot;q9tKkq_viewer cm-editor z-10 light:cm-light dark:cm-light flex h-full w-full flex-col items-stretch ͼd ͼr&quot;&gt;&lt;div class=&quot;cm-scroller&quot;&gt;&lt;pre class=&quot;cm-content q9tKkq_readonly m-0&quot;&gt;&lt;code&gt;&lt;font face=&quot;Helvetica&quot;&gt; - HealthCalcImpl()&lt;br&gt;&lt;br&gt; + getInstance() : HealthCalcImpl {static}&lt;br&gt;&lt;br&gt; + bmi(weight: float, height: float) : float&lt;br&gt;&lt;br&gt; + bmi_classification(bmi: float) : str&lt;br&gt;&lt;br&gt; + bmi_full_classification(bmi: float) : str&lt;br&gt;&lt;br&gt; + ibw(height: float, sex: str) : float&lt;br&gt;&lt;br&gt; + bmr(weight: float, height: float, age: int, sex: str) : float&lt;/font&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;&quot;&gt;&lt;div class=&quot;&quot;&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/pre&gt;" vertex="1">
+          <mxGeometry height="280" width="450" x="249.60000000000002" y="230" as="geometry" />
+        </mxCell>
+        <mxCell id="NKJwvJGwVdoyrJJqCeGJ-5" edge="1" parent="1" style="endArrow=classic;html=1;rounded=0;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="769.6" y="400" as="sourcePoint" />
+            <mxPoint x="699.6" y="400" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="NKJwvJGwVdoyrJJqCeGJ-6" edge="1" parent="1" source="NKJwvJGwVdoyrJJqCeGJ-4" style="endArrow=none;html=1;rounded=0;exitX=0.996;exitY=0.779;exitDx=0;exitDy=0;exitPerimeter=0;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="729.6" y="450" as="sourcePoint" />
+            <mxPoint x="769.6" y="450" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="NKJwvJGwVdoyrJJqCeGJ-7" edge="1" parent="1" style="endArrow=none;html=1;rounded=0;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="769.6" y="450" as="sourcePoint" />
+            <mxPoint x="769.6" y="400" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="NKJwvJGwVdoyrJJqCeGJ-8" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Client&amp;nbsp;" vertex="1">
+          <mxGeometry height="30" width="100" x="50" y="300" as="geometry" />
+        </mxCell>
+        <mxCell id="NKJwvJGwVdoyrJJqCeGJ-9" edge="1" parent="1" style="endArrow=classic;html=1;rounded=0;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <Array as="points">
+              <mxPoint x="160" y="310" />
+            </Array>
+            <mxPoint x="150.0000000000002" y="310.31" as="sourcePoint" />
+            <mxPoint x="249.60000000000002" y="310" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
