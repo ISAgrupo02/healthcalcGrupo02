@@ -523,6 +523,13 @@ A continuación se muestra una captura de la aplicación web en ejecución.
 
 ## Práctica 6: Patrones de diseño
 
+### Apartado 2: Singleton
+![Diagrama Singleton](design_patterns/singleton_imagen.jpeg)
+
+### Apartado 3.a: Adapter
+
+![Diagrama Adapter](design_patterns/adapter_imagen.jpeg)
+
 ### Apartado 3.b: Proxy
 ![Diagrama Proxy](design_patterns/proxy_imagen.jpeg)
 
