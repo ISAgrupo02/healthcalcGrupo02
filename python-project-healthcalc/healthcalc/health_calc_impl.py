@@ -5,18 +5,13 @@ from healthcalc.exceptions import InvalidHealthDataException
 
 class HealthCalcImpl(HealthCalc):
 
-    _instance = None
+    instance = None 
 
-    def __new__(cls):
-        if cls._instance is None:
-            cls._instance = super(HealthCalcImpl, cls).__new__(cls)
-        return cls._instance
-
-    def __init__(self):
-        if hasattr(self, "_initialized"):
-            return
-
-        self._initialized = True
+    @classmethod
+    def getInstance(cls) -> HealthCalc:
+        if cls.instance is None:
+            cls.instance = cls()
+        return cls.instance
 
     #BMI CLASSIFICATION BASIC
 
