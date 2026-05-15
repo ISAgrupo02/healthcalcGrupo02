@@ -14,10 +14,7 @@ _health_proxy = None
 
 
 def get_health_proxy():
-    """
-    Get or create the Proxy instance (Singleton pattern for the proxy).
-    The Proxy wraps the Adapter which adapts HealthCalc to HealthHospital interface.
-    """
+   
     global _health_proxy
     if _health_proxy is None:
        
@@ -28,10 +25,7 @@ def get_health_proxy():
 
 
 def get_decorated_proxy(sistema="EU", idioma="ES"):
-    """
-    Get the Proxy wrapped with Decorator for internationalization.
-    Pattern chain: Decorator -> Proxy -> Adapter -> HealthCalc (Singleton)
-    """
+
     proxy = get_health_proxy()
 
     decorated = InternationalHealthDecorator(proxy, sistema=sistema, idioma=idioma)
@@ -39,16 +33,7 @@ def get_decorated_proxy(sistema="EU", idioma="ES"):
 
 
 def main():
-    """
-    Entry point of the HealthCalc application.
-    Allows testing health metrics from the command line.
-    
-    Demonstrates all design patterns:
-    - Singleton: HealthCalcImpl is a Singleton
-    - Adapter: HealthHospitalAdapter adapts HealthCalc to HealthHospital
-    - Proxy: HealthStatsProxy provides statistics tracking
-    - Decorator: InternationalHealthDecorator adds internationalization
-    """
+
 
     parser = argparse.ArgumentParser(
         description="HealthCalc CLI - Calculate health metrics from terminal"
@@ -88,10 +73,11 @@ def main():
     bmr_parser.add_argument("--sex", type=str, required=True, choices=["male", "female"])
 
     
+    stats_parser = subparsers.add_parser("stats", help="Show collected health statistics")
 
     args = parser.parse_args()
 
-    calc = HealthCalcImpl.getInstance()  # Singleton instance
+    calc = HealthCalcImpl.getInstance()  
     
     try:
         if args.metric == "bmi":

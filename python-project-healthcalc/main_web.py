@@ -1,40 +1,9 @@
 from flask import Flask, render_template, request, redirect, url_for
 
 from healthcalc.health_calc_impl import HealthCalcImpl
-from healthcalc.health_calc_adapter import HealthHospitalAdapter
-from healthcalc.health_stats_proxy import HealthStatsProxy
-from healthcalc.health_hospital_internacional_decorator import InternationalHealthDecorator
 from healthcalc.exceptions import InvalidHealthDataException
 
 app = Flask(__name__)
-
-
-stats_proxy = None
-decorated_proxy = None
-
-
-def get_stats_proxy():
-    """
-    Initialize proxy on first use (Lazy initialization pattern).
-    Returns: Proxy instance that wraps the Adapter
-    Pattern: Proxy -> Adapter -> HealthCalc (Singleton)
-    """
-    global stats_proxy
-    if stats_proxy is None:
-        calc = HealthCalcImpl.getInstance()  # Singleton instance
-        adapter = HealthHospitalAdapter(calc)
-        stats_proxy = HealthStatsProxy(adapter)
-    return stats_proxy
-
-
-def get_decorated_proxy(sistema="EU", idioma="ES"):
-    """
-    Get the Proxy wrapped with Decorator for internationalization.
-    Pattern chain: Decorator -> Proxy -> Adapter -> HealthCalc (Singleton)
-    """
-    proxy = get_stats_proxy()
-    decorated = InternationalHealthDecorator(proxy, sistema=sistema, idioma=idioma)
-    return decorated
 
 
 @app.route('/')
@@ -67,9 +36,9 @@ def ibw():
             if height_value <= 0:
                 raise InvalidHealthDataException("La altura debe ser positiva.")
 
-            
-            adapter = HealthHospitalAdapter(HealthCalcImpl.getInstance())
-            result = adapter.pesoCorporalIdeal(sex, height_value / 100)
+    
+            calc = HealthCalcImpl.getInstance()
+            result = calc.ibw(height_value, sex)
 
         except ValueError as e:
             if str(e) == "sexo":
@@ -141,7 +110,6 @@ def mifflin():
             if age_value <= 0:
                 raise InvalidHealthDataException("La edad debe de tener un valor positivo")
 
-           
             calc = HealthCalcImpl.getInstance()
             result = calc.bmr(weight_value, height_value, age_value, sex)
 
@@ -180,14 +148,11 @@ def bmi():
     height = ''
     weight = ''
     age = ''
-    sex = 'H'
+    sex = ''
 
     if request.method == 'POST':
         height = request.form.get('height', '').strip()
         weight = request.form.get('weight', '').strip()
-        sex = request.form.get('sex', 'H').strip()
-        sistema = request.form.get('sistema', 'EU').strip()
-        idioma = request.form.get('idioma', 'ES').strip()
 
         try:
             if height == '':
@@ -205,18 +170,9 @@ def bmi():
             if weight_value <= 0:
                 raise InvalidHealthDataException("El peso debe ser un valor positivo.")
 
-            
-            if sistema and idioma:
-                decorated = get_decorated_proxy(sistema=sistema, idioma=idioma)
-                result, classification = decorated.indiceMasaCorporal(
-                    height_value, int(weight_value * 1000)  
-                )
-            else:
-                
-                proxy = get_stats_proxy()
-                result, classification = proxy.indiceMasaCorporal(
-                    height_value, int(weight_value * 1000)
-                )
+            calc = HealthCalcImpl.getInstance()
+            result = calc.bmi(weight_value, height_value)
+            classification = calc.bmi_classification(result)
 
         except ValueError as e:
             if str(e) == "altura_nula":
@@ -240,24 +196,6 @@ def bmi():
         sex=sex,
         active_page='bmi'
     )
-
-
-@app.route('/stats', methods=['GET'])
-def stats():
-    """
-    Display statistics tracked by the Proxy pattern.
-    Shows aggregated data from all calculations.
-    """
-    proxy = get_stats_proxy()
-    stats_data = {
-        'total_pacientes': proxy.totalPacientes,
-        'altura_media': f"{proxy.alturaMedia():.2f}" if proxy.totalPacientes > 0 else "0.00",
-        'peso_medio': f"{proxy.pesoMedio():.2f}" if proxy.totalPacientes > 0 else "0.00",
-        'imc_medio': f"{proxy.imcMedio():.2f}" if proxy.totalPacientes > 0 else "0.00",
-        'num_hombres': proxy.numHombres,
-        'num_mujeres': proxy.numMujeres
-    }
-    return render_template('stats.html', stats=stats_data)
 
 
 if __name__ == '__main__':
