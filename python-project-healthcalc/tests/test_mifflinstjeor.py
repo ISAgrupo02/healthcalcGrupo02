@@ -1,7 +1,7 @@
 import pytest
 from healthcalc.health_calc_impl import HealthCalcImpl
 from healthcalc.exceptions import InvalidHealthDataException
-
+from healthcalc.gender import Gender
 
 class TestBMR:
 
@@ -19,7 +19,7 @@ class TestBMR:
         weight = 70.0      # kg
         height = 175.0     # cm
         age = 30           # years
-        sex = "male"
+        sex = Gender.MALE
 
         # Act
         expected_bmr = (10 * weight) + (6.25 * height) - (5 * age) + 5
@@ -35,7 +35,7 @@ class TestBMR:
         weight = 60.0
         height = 165.0
         age = 25
-        sex = "female"
+        sex = Gender.FEMALE
 
         # Act
         expected_bmr = (10 * weight) + (6.25 * height) - (5 * age) - 161
@@ -49,19 +49,19 @@ class TestBMR:
     def test_bmr_invalido_peso_negativo(self):
         """Negative weight should raise exception."""
         with pytest.raises(InvalidHealthDataException):
-            self.health_calc.bmr(-70.0, 175.0, 30, "male")
+            self.health_calc.bmr(-70.0, 175.0, 30, Gender.MALE)
 
     def test_bmr_peso_cero(self):
         """Zero weight should raise exception."""
         with pytest.raises(InvalidHealthDataException):
-            self.health_calc.bmr(0.0, 175.0, 30, "male")
+            self.health_calc.bmr(0.0, 175.0, 30, Gender.MALE)
 
     def test_bmr_invalido_altura_negativa(self):
         """Negative height should raise exception."""
         with pytest.raises(InvalidHealthDataException):
-            self.health_calc.bmr(70.0, -175.0, 30, "male")
+            self.health_calc.bmr(70.0, -175.0, 30, Gender.MALE)
 
     def test_bmr_altura_cero(self):
         """Zero height should raise exception."""
         with pytest.raises(InvalidHealthDataException):
-            self.health_calc.bmr(70.0, 0.0, 30, "male")
+            self.health_calc.bmr(70.0, 0.0, 30, Gender.MALE)
