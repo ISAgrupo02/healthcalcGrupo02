@@ -1,7 +1,7 @@
 import math
 from healthcalc.health_calc import HealthCalc
 from healthcalc.exceptions import InvalidHealthDataException
-
+from healthcalc.gender import Gender
 
 class HealthCalcImpl(HealthCalc):
 
@@ -99,15 +99,21 @@ class HealthCalcImpl(HealthCalc):
         if height <= 0:
             raise InvalidHealthDataException("Height must be positive.")
 
-        if sex not in ["male", "female"]:
-            raise InvalidHealthDataException("Sex must be 'male' or 'female'.")
+        if isinstance(sex, str):
+            try:
+               sex = Gender(sex)
+            except ValueError:
+               raise InvalidHealthDataException(
+                  "Sex must be 'male' or 'female'."
+        )
 
-        if sex == "male":
+        if sex == Gender.MALE:
             return 50 + 0.9 * (height - 152.4)
 
-        else:
+        if sex == Gender.FEMALE:
             return 45.5 + 0.9 * (height - 152.4)
 
+        raise InvalidHealthDataException("Sex must be 'male' or 'female'.")
 
     #BMR
 
@@ -122,11 +128,13 @@ class HealthCalcImpl(HealthCalc):
         if age <= 0:
             raise InvalidHealthDataException("Age must be positive.")
 
-        if sex not in ["male", "female"]:
-            raise InvalidHealthDataException("Sex must be 'male' or 'female'.")
+        if isinstance(sex, str):
+            sex = Gender(sex)
 
-        if sex == "male":
+        if sex == Gender.MALE:
             return (10 * weight) + (6.25 * height) - (5 * age) + 5
 
-        else:
+        if sex == Gender.FEMALE:
             return (10 * weight) + (6.25 * height) - (5 * age) - 161
+
+        raise InvalidHealthDataException("Sex must be 'male' or 'female'.")
