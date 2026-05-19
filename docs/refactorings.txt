@@ -1,0 +1,34 @@
+REFACTORING 1
+
+(1) Bad smell o problema:
+Primitive Obsession / uso de valores literales para representar el género.
+
+(2) Refactoring aplicado:
+Replace Type Code with Enum.
+
+(3) Tipo/categoría:
+Attribute refactoring / class refactoring.
+
+(4) Descripción:
+Se ha creado el enumerado Gender para representar los posibles valores de género de forma más clara y segura. Se sustituyó el uso de cadenas de texto como "male" y "female" por valores tipados mediante Enum.
+
+(5) Cambios manuales:
+1 clase nueva, modificación de los métodos ibw y bmr, y actualización del import correspondiente.
+
+
+REFACTORING 2
+
+(1) Bad smell o problema:
+Inconsistencia entre implementación y pruebas unitarias.
+
+(2) Refactoring aplicado:
+Replace Literal with Enum / Update Method Calls.
+
+(3) Tipo/categoría:
+Test refactoring.
+
+(4) Descripción:
+Se actualizaron los tests unitarios relacionados con IBW y BMR para utilizar el enum Gender en lugar de cadenas literales. Esto mantiene la coherencia entre las pruebas y el nuevo diseño de la aplicación.
+
+(5) Cambios manuales:
+2 archivos de tests modificados y actualización de las llamadas que recibían valores de género.
