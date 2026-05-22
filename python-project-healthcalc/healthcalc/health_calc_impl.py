@@ -1,11 +1,14 @@
 import math
+
 from healthcalc.health_calc import HealthCalc
 from healthcalc.exceptions import InvalidHealthDataException
 from healthcalc.gender import Gender
+from healthcalc.person import Person
+
 
 class HealthCalcImpl(HealthCalc):
 
-    instance = None 
+    instance = None
 
     @classmethod
     def getInstance(cls) -> HealthCalc:
@@ -13,33 +16,25 @@ class HealthCalcImpl(HealthCalc):
             cls.instance = cls()
         return cls.instance
 
-    #BMI CLASSIFICATION BASIC
-
     def bmi_classification(self, bmi: float) -> str:
-
         if bmi < 0:
             raise InvalidHealthDataException("BMI cannot be negative.")
 
         if bmi > 150:
-            raise InvalidHealthDataException("BMI must be within a possible biological range [0-150].")
+            raise InvalidHealthDataException(
+                "BMI must be within a possible biological range [0-150]."
+            )
 
         if bmi < 18.5:
             return "Underweight"
-
         elif bmi < 25:
             return "Normal weight"
-
         elif bmi < 30:
             return "Overweight"
-
         else:
             return "Obesity"
 
-
-    #BMI FULL CLASSIFICATION
-
     def bmi_full_classification(self, bmi: float) -> str:
-
         if not isinstance(bmi, (int, float)) or not math.isfinite(bmi):
             raise InvalidHealthDataException("BMI must be a finite real number.")
 
@@ -47,36 +42,28 @@ class HealthCalcImpl(HealthCalc):
             raise InvalidHealthDataException("BMI must be positive.")
 
         if bmi > 150:
-            raise InvalidHealthDataException("BMI must be within a possible biological range [0-150].")
+            raise InvalidHealthDataException(
+                "BMI must be within a possible biological range [0-150]."
+            )
 
         if bmi < 16.0:
             return "Severe Thinness"
-
         if bmi < 17.0:
             return "Moderate Thinness"
-
         if bmi < 18.5:
             return "Mild Thinness"
-
         if bmi < 25.0:
             return "Normal"
-
         if bmi < 30.0:
             return "Overweight"
-
         if bmi < 35.0:
             return "Obesity Class I"
-
         if bmi < 40.0:
             return "Obesity Class II"
 
         return "Obesity Class III"
 
-
-    #BMI CALCULATION
-
     def bmi(self, weight: float, height: float) -> float:
-
         if weight <= 0:
             raise InvalidHealthDataException("Weight must be positive.")
 
@@ -91,21 +78,18 @@ class HealthCalcImpl(HealthCalc):
 
         return weight / (height ** 2)
 
+    def bmi_person(self, person: Person) -> float:
+        return self.bmi(person.weight(), person.height())
 
-    #IBW
-
-    def ibw(self, height: float, sex: str) -> float:
-
+    def ibw(self, height: float, sex) -> float:
         if height <= 0:
             raise InvalidHealthDataException("Height must be positive.")
 
         if isinstance(sex, str):
             try:
-               sex = Gender(sex)
+                sex = Gender(sex)
             except ValueError:
-               raise InvalidHealthDataException(
-                  "Sex must be 'male' or 'female'."
-        )
+                raise InvalidHealthDataException("Sex must be 'male' or 'female'.")
 
         if sex == Gender.MALE:
             return 50 + 0.9 * (height - 152.4)
@@ -115,10 +99,10 @@ class HealthCalcImpl(HealthCalc):
 
         raise InvalidHealthDataException("Sex must be 'male' or 'female'.")
 
-    #BMR
+    def ibw_person(self, person: Person) -> float:
+        return self.ibw(person.height(), person.gender())
 
-    def bmr(self, weight: float, height: float, age: int, sex: str) -> float:
-
+    def bmr(self, weight: float, height: float, age: int, sex) -> float:
         if weight <= 0:
             raise InvalidHealthDataException("Weight must be positive.")
 
@@ -129,7 +113,10 @@ class HealthCalcImpl(HealthCalc):
             raise InvalidHealthDataException("Age must be positive.")
 
         if isinstance(sex, str):
-            sex = Gender(sex)
+            try:
+                sex = Gender(sex)
+            except ValueError:
+                raise InvalidHealthDataException("Sex must be 'male' or 'female'.")
 
         if sex == Gender.MALE:
             return (10 * weight) + (6.25 * height) - (5 * age) + 5
@@ -138,3 +125,11 @@ class HealthCalcImpl(HealthCalc):
             return (10 * weight) + (6.25 * height) - (5 * age) - 161
 
         raise InvalidHealthDataException("Sex must be 'male' or 'female'.")
+
+    def bmr_person(self, person: Person) -> float:
+        return self.bmr(
+            person.weight(),
+            person.height(),
+            person.age(),
+            person.gender()
+        )

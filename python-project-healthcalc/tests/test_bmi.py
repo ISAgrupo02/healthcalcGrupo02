@@ -1,6 +1,8 @@
 import pytest
 from healthcalc.health_calc_impl import HealthCalcImpl
 from healthcalc.exceptions import InvalidHealthDataException
+from healthcalc.person_impl import PersonImpl
+from healthcalc.gender import Gender
 
 
 class TestBMI:
@@ -17,7 +19,8 @@ class TestBMI:
         height = 1.75
         expected_bmi = 70.0 / (1.75 ** 2)
 
-        result = self.health_calc.bmi(weight, height)
+        person = PersonImpl(weight, height, Gender.MALE, 30)
+        result = self.health_calc.bmi_person(person)
 
         # pytest.approx es el equivalente a assertEquals con delta (0.01) en JUnit
         assert result == pytest.approx(expected_bmi, abs=0.01)
@@ -28,12 +31,13 @@ class TestBMI:
         height = 1.70
 
         with pytest.raises(InvalidHealthDataException):
-            self.health_calc.bmi(weight, height)
-
+            person = PersonImpl(weight, height, Gender.MALE, 30)
+            result = self.health_calc.bmi_person(person)
     def test_bmi_altura_cero(self):
         """Lanzar excepción cuando la altura es cero"""
         with pytest.raises(InvalidHealthDataException):
-            self.health_calc.bmi(70, 0)
+            person = PersonImpl(70, 0, Gender.MALE, 30)
+            result = self.health_calc.bmi_person(person)
 
     def test_bmi_negativos(self):
         """Lanzar excepción cuando los valores son negativos (Equivalente a assertAll)"""
