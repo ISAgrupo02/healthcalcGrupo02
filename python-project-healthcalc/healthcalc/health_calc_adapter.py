@@ -1,5 +1,6 @@
 from .health_hospital_interface import HealthHospital
 from .health_calc import HealthCalc
+from .gender import Gender
 
 class HealthHospitalAdapter(HealthHospital):
 
@@ -20,9 +21,9 @@ class HealthHospitalAdapter(HealthHospital):
         altura_cm = altura * 100
 
         if genero.upper() == "H":
-            sexo = "male"
+            sexo = Gender.MALE
         elif genero.upper() == "M":
-            sexo = "female"
+            sexo = Gender.FEMALE
         else:
             raise ValueError("Error: genero debe ser 'H' o 'M'.")
 
