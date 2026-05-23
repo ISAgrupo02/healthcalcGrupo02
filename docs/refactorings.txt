@@ -32,3 +32,27 @@ Se actualizaron los tests unitarios relacionados con IBW y BMR para utilizar el 
 
 (5) Cambios manuales:
 2 archivos de tests modificados y actualización de las llamadas que recibían valores de género.
+
+
+
+
+
+Refactoring 4 
+
+Bad smell / problema:
+Primitive Obsession. La clasificación completa del BMI se representaba mediante cadenas de texto, por ejemplo "Normal", "Overweight" u "Obesity Class I". Esto hace que el código dependa de valores escritos manualmente y puede provocar errores si se escribe mal una categoría o si se repite la misma lógica en varios puntos.
+
+Refactorings aplicados:
+Se ha aplicado Extract Class creando el nuevo enum BMICategory para representar las categorías del BMI como un tipo propio del dominio. También se ha aplicado Extract Method, separando la lógica de clasificación en el método bmi_category(bmi). Además, se ha aplicado Add Method to Class añadiendo el método category(person), tal y como aparece en el diagrama de la práctica.
+
+Tipo / categoría:
+Class refactoring y Method refactoring.
+
+Descripción del cambio:
+Se ha creado el enum BMICategory con todas las categorías posibles del BMI. La clase HealthCalcImpl ahora calcula la categoría mediante el método bmi_category, que devuelve un valor de BMICategory en lugar de trabajar directamente con strings. El método bmi_full_classification se mantiene para conservar la compatibilidad con el comportamiento anterior y con los tests existentes.
+
+Cambios manuales:
+1 fichero nuevo creado: bmi_category.py.
+1 método añadido en HealthCalc: category(person).
+3 métodos añadidos o modificados en HealthCalcImpl: bmi_category(bmi), category(person) y bmi_full_classification(bmi).
+2 tests nuevos añadidos para comprobar que se devuelve BMICategory.
