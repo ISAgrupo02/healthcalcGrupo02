@@ -4,6 +4,7 @@ from healthcalc.health_calc import HealthCalc
 from healthcalc.exceptions import InvalidHealthDataException
 from healthcalc.gender import Gender
 from healthcalc.person import Person
+from healthcalc.bmi_category import BMICategory
 
 
 class HealthCalcImpl(HealthCalc):
@@ -34,34 +35,7 @@ class HealthCalcImpl(HealthCalc):
         else:
             return "Obesity"
 
-    def bmi_full_classification(self, bmi: float) -> str:
-        if not isinstance(bmi, (int, float)) or not math.isfinite(bmi):
-            raise InvalidHealthDataException("BMI must be a finite real number.")
-
-        if bmi <= 0:
-            raise InvalidHealthDataException("BMI must be positive.")
-
-        if bmi > 150:
-            raise InvalidHealthDataException(
-                "BMI must be within a possible biological range [0-150]."
-            )
-
-        if bmi < 16.0:
-            return "Severe Thinness"
-        if bmi < 17.0:
-            return "Moderate Thinness"
-        if bmi < 18.5:
-            return "Mild Thinness"
-        if bmi < 25.0:
-            return "Normal"
-        if bmi < 30.0:
-            return "Overweight"
-        if bmi < 35.0:
-            return "Obesity Class I"
-        if bmi < 40.0:
-            return "Obesity Class II"
-
-        return "Obesity Class III"
+   
 
     def bmi(self, weight: float, height: float) -> float:
         if weight <= 0:
@@ -133,3 +107,38 @@ class HealthCalcImpl(HealthCalc):
             person.age(),
             person.gender()
         )
+    def bmi_category(self, bmi: float) -> BMICategory:
+        if not isinstance(bmi, (int, float)) or not math.isfinite(bmi):
+            raise InvalidHealthDataException("BMI must be a finite real number.")
+
+        if bmi <= 0:
+            raise InvalidHealthDataException("BMI must be positive.")
+
+        if bmi > 150:
+            raise InvalidHealthDataException(
+                "BMI must be within a possible biological range [0-150]."
+            )
+
+        if bmi < 16.0:
+            return BMICategory.SEVERE_THINNESS
+        if bmi < 17.0:
+            return BMICategory.MODERATE_THINNESS
+        if bmi < 18.5:
+            return BMICategory.MILD_THINNESS
+        if bmi < 25.0:
+            return BMICategory.NORMAL
+        if bmi < 30.0:
+            return BMICategory.OVERWEIGHT
+        if bmi < 35.0:
+            return BMICategory.OBESE_CLASS_I
+        if bmi < 40.0:
+            return BMICategory.OBESE_CLASS_II
+
+        return BMICategory.OBESE_CLASS_III
+
+    def category(self, person: Person) -> BMICategory:
+        bmi = self.bmi_person(person)
+        return self.bmi_category(bmi)
+
+    def bmi_full_classification(self, bmi: float) -> str:
+        return self.bmi_category(bmi).value

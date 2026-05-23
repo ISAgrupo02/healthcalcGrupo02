@@ -3,7 +3,9 @@ import pytest
 
 from healthcalc.health_calc_impl import HealthCalcImpl
 from healthcalc.exceptions import InvalidHealthDataException
-
+from healthcalc.bmi_category import BMICategory
+from healthcalc.person_impl import PersonImpl
+from healthcalc.gender import Gender
 
 class TestBMIFullClassification:
 
@@ -111,3 +113,19 @@ class TestBMIFullClassification:
         """Raise exception when BMI is not a finite real number."""
         with pytest.raises(InvalidHealthDataException):
             self.health_calc.bmi_full_classification(bmi)
+    def test_bmi_category_returns_enum(self):
+        result = self.health_calc.bmi_category(22.0)
+
+        assert result == BMICategory.NORMAL
+
+    def test_category_person_returns_enum(self):
+        person = PersonImpl(
+            weight=78,
+            height=1.83,
+            gender=Gender.MALE,
+            age=25
+        )
+
+        result = self.health_calc.category(person)
+
+        assert result == BMICategory.NORMAL
