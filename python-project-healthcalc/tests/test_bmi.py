@@ -40,56 +40,42 @@ class TestBMI:
             result = self.health_calc.bmi_person(person)
 
     def test_bmi_negativos(self):
-        """Lanzar excepción cuando los valores son negativos (Equivalente a assertAll)"""
-        weight = -70
-        height = 1.70
-
+        """Lanzar excepción cuando los valores son negativos"""
+        person = PersonImpl(-70, 1.70, Gender.MALE, 30)
         with pytest.raises(InvalidHealthDataException):
-            self.health_calc.bmi(weight, height)
-
-        weight = -70
-        height = 1.70
+            self.health_calc.bmi_person(person)
+            person = PersonImpl(70, -1.70, Gender.MALE, 30)
         with pytest.raises(InvalidHealthDataException):
-            self.health_calc.bmi(weight, height)
-
-        weight = 70
-        height = -1.70
-        with pytest.raises(InvalidHealthDataException):
-            self.health_calc.bmi(weight, height)
-
+            self.health_calc.bmi_person(person)
+        
+        
     # --- Tests de Límites e Invalidación para el BMI ---
 
-    @pytest.mark.parametrize("weight", [-10.0, 0.0, 0.99], ids=lambda x: f"Peso mínimo inválido: {x}kg")
+    @pytest.mark.parametrize("weight", [-10.0, 0.0, 0.99],ids=lambda x: f"Peso mínimo inválido: {x}kg")
     def test_peso_minimo_imposible(self, weight: float):
-        """Lanzar excepción cuando el peso es negativo o menor que 1kg."""
-        height = 1.70
+              person = PersonImpl(weight, 1.70, Gender.MALE, 30)
+              with pytest.raises(InvalidHealthDataException):
+                  self.health_calc.bmi_person(person)
 
-        with pytest.raises(InvalidHealthDataException):
-            self.health_calc.bmi(weight, height)
-
-    @pytest.mark.parametrize("weight", [700.1, 1000.0, 5000.0], ids=lambda x: f"Peso máximo inválido: {x}kg")
+    @pytest.mark.parametrize("weight", [700.1, 1000.0, 5000.0],ids=lambda x: f"Peso máximo inválido: {x}kg")
     def test_peso_maximo_imposible(self, weight: float):
-        """Lanzar excepción cuando el peso es extremadamente alto."""
-        height = 1.70
-
+        person = PersonImpl(weight, 1.70, Gender.MALE, 30)
         with pytest.raises(InvalidHealthDataException):
-            self.health_calc.bmi(weight, height)
+            self.health_calc.bmi_person(person)
 
-    @pytest.mark.parametrize("height", [-0.50, 0.0, 0.29], ids=lambda x: f"Altura mínima inválida: {x}m")
+    @pytest.mark.parametrize("height", [-0.50, 0.0, 0.29],ids=lambda x: f"Altura mínima inválida: {x}m")
     def test_altura_minima_imposible(self, height: float):
         """Lanzar excepción cuando la altura es negativa o menor que 30cm."""
-        weight = 70
-
+        person = PersonImpl(70, height, Gender.MALE, 30)
         with pytest.raises(InvalidHealthDataException):
-            self.health_calc.bmi(weight, height)
+            self.health_calc.bmi_person(person)
 
-    @pytest.mark.parametrize("height", [3.01, 3.50, 5.00], ids=lambda x: f"Altura máxima inválida: {x}m")
+    @pytest.mark.parametrize("height", [3.01, 3.50, 5.00],ids=lambda x: f"Altura máxima inválida: {x}m")
     def test_altura_maximo_imposible(self, height: float):
         """Lanzar excepción cuando la altura es extremadamente alta."""
-        weight = 70
-        
+        person = PersonImpl(70, height, Gender.MALE, 30)
         with pytest.raises(InvalidHealthDataException):
-            self.health_calc.bmi(weight, height)
+            self.health_calc.bmi_person(person)
 
 
     # --- Tests de Clasificación básica a partir del BMI ---
