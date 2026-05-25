@@ -537,4 +537,4 @@ A continuación se muestra una captura de la aplicación web en ejecución.
 ![Diagrama Decorator](design_patterns/decorator_imagen.jpeg)
 
 ## Práctica 7: Refactorings
-![Refacotrings].(docs/refactorings.txt)
+[Refactorings](docs/refactorings.txt)
