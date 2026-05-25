@@ -78,3 +78,38 @@ Se ha creado una nueva interfaz BodyMassIndex para representar el cálculo del �
 1 interfaz añadida a la herencia de HealthCalcImpl.
 1 método nuevo añadido en HealthCalcImpl: body_mass_index(person).
 1 test nuevo añadido en test_bmi.py.
+
+
+REFACTORING 5
+
+(1) Bad smell o problema:
+Long Parameter List / Data Clumps. Los métodos bmi, ibw y bmr recibían varios datos sueltos de una persona.
+
+(2) Refactoring aplicado:
+Introduce Parameter Object y Extract Interface.
+
+(3) Tipo/categoría:
+Method refactoring / class refactoring.
+
+(4) Descripción:
+Se ha creado la interfaz Person para agrupar los datos personales necesarios en los cálculos: peso, altura, género y edad. Además, se creó una implementación concreta PersonImpl para poder usar objetos Person en los métodos y en los tests.
+
+(5) Cambios manuales:
+2 clases nuevas, creación de métodos bmi_person, ibw_person y bmr_person, y actualización de los tests afectados.
+
+REFACTORING 6
+
+(1) Bad smell o problema:
+Código poco flexible y acoplamiento a parámetros primitivos en los cálculos de salud.
+
+(2) Refactoring aplicado:
+Encapsulate Data / Replace Primitive with Object.
+
+(3) Tipo/categoría:
+Attribute refactoring / method refactoring.
+
+(4) Descripción:
+Se modificaron los tests y los métodos refactorizados para trabajar con objetos Person en lugar de pasar peso, altura, edad y género como valores separados. Esto mejora la legibilidad y facilita añadir nuevas métricas en el futuro.
+
+(5) Cambios manuales:
+Actualización de 3 archivos de test, modificación de imports y sustitución de llamadas antiguas por llamadas a bmi_person, ibw_person y bmr_person.
