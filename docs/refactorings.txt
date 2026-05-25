@@ -60,7 +60,7 @@ Cambios manuales:
 REFACTORING 4
 
 (1) Bad smell o problema:
-Inadecuada descomposición / falta de correspondencia entre el diseño y la implementación. El cálculo del Body Mass Index ya existía como bmi_person(person), pero no había una interfaz específica que representara el concepto BodyMassIndex indicado en el diagrama de la práctica.
+Falta de correspondencia entre el diseño y la implementación. El cálculo del Body Mass Index ya existía como bmi_person(person), pero no había una interfaz específica que representara el concepto BodyMassIndex indicado en el diagrama de la práctica.
 
 (2) Refactoring aplicado:
 Extract Interface / Add Method to Class.
