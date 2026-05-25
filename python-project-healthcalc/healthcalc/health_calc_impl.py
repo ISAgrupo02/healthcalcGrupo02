@@ -5,9 +5,10 @@ from healthcalc.exceptions import InvalidHealthDataException
 from healthcalc.gender import Gender
 from healthcalc.person import Person
 from healthcalc.bmi_category import BMICategory
+from healthcalc.body_mass_index import BodyMassIndex
 
 
-class HealthCalcImpl(HealthCalc):
+class HealthCalcImpl(HealthCalc, BodyMassIndex):
 
     instance = None
 
@@ -142,3 +143,9 @@ class HealthCalcImpl(HealthCalc):
 
     def bmi_full_classification(self, bmi: float) -> str:
         return self.bmi_category(bmi).value
+    
+    def bmi_person(self, person: Person) -> float:
+        return self.bmi(person.weight(), person.height())
+
+    def body_mass_index(self, person: Person) -> float:
+        return self.bmi_person(person)

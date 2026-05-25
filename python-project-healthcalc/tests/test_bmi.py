@@ -113,3 +113,18 @@ class TestBMI:
         """Lanzar excepción cuando el BMI es extremadamente alto."""
         with pytest.raises(InvalidHealthDataException):
             self.health_calc.bmi_classification(bmi)
+
+    def test_body_mass_index_person(self):
+        person = PersonImpl(
+            70.0,
+            1.75,
+            Gender.MALE,
+            30
+        )
+
+        expected_bmi = 70.0 / (1.75 ** 2)
+
+        result = self.health_calc.body_mass_index(person)
+
+        assert result == pytest.approx(expected_bmi, abs=0.01)
+        
