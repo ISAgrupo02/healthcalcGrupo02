@@ -45,9 +45,8 @@ class TestBMI:
         with pytest.raises(InvalidHealthDataException):
             self.health_calc.bmi_person(person)
             person = PersonImpl(70, -1.70, Gender.MALE, 30)
-        with pytest.raises(InvalidHealthDataException):
-            self.health_calc.bmi_person(person)
-        
+            with pytest.raises(InvalidHealthDataException):
+                self.health_calc.bmi_person(person)
         
     # --- Tests de Límites e Invalidación para el BMI ---
 
