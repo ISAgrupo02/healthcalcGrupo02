@@ -6,6 +6,7 @@ from healthcalc.gender import Gender
 from healthcalc.person import Person
 from healthcalc.bmi_category import BMICategory
 from healthcalc.body_mass_index import BodyMassIndex
+from .person import Person
 
 
 class HealthCalcImpl(HealthCalc, BodyMassIndex):
@@ -149,3 +150,9 @@ class HealthCalcImpl(HealthCalc, BodyMassIndex):
 
     def body_mass_index(self, person: Person) -> float:
         return self.bmi_person(person)
+    
+    def ideal_body_weight(self, person: Person) -> float:
+        height = person.height()
+        gender = person.gender()
+
+        return self.ibw(height, gender)
