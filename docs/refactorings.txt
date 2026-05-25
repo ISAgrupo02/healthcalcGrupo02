@@ -37,7 +37,7 @@ Se actualizaron los tests unitarios relacionados con IBW y BMR para utilizar el 
 
 
 
-Refactoring 4 
+Refactoring 3
 
 Bad smell / problema:
 Primitive Obsession. La clasificación completa del BMI se representaba mediante cadenas de texto, por ejemplo "Normal", "Overweight" u "Obesity Class I". Esto hace que el código dependa de valores escritos manualmente y puede provocar errores si se escribe mal una categoría o si se repite la misma lógica en varios puntos.
@@ -56,3 +56,25 @@ Cambios manuales:
 1 método añadido en HealthCalc: category(person).
 3 métodos añadidos o modificados en HealthCalcImpl: bmi_category(bmi), category(person) y bmi_full_classification(bmi).
 2 tests nuevos añadidos para comprobar que se devuelve BMICategory.
+
+REFACTORING 4
+
+(1) Bad smell o problema:
+Inadecuada descomposición / falta de correspondencia entre el diseño y la implementación. El cálculo del Body Mass Index ya existía como bmi_person(person), pero no había una interfaz específica que representara el concepto BodyMassIndex indicado en el diagrama de la práctica.
+
+(2) Refactoring aplicado:
+Extract Interface / Add Method to Class.
+Se ha creado la interfaz BodyMassIndex y se ha añadido el método body_mass_index(person), que reutiliza el cálculo BMI ya existente mediante bmi_person(person).
+
+(3) Tipo/categoría:
+Class refactoring y Method refactoring.
+
+(4) Descripción:
+Se ha creado una nueva interfaz BodyMassIndex para representar el cálculo del índice de masa corporal de una persona. La clase HealthCalcImpl implementa esta interfaz y añade el método body_mass_index(person), que delega en bmi_person(person), manteniendo el mismo comportamiento externo del sistema.
+
+(5) Cambios manuales:
+1 fichero nuevo creado: body_mass_index.py.
+1 import añadido en HealthCalcImpl.
+1 interfaz añadida a la herencia de HealthCalcImpl.
+1 método nuevo añadido en HealthCalcImpl: body_mass_index(person).
+1 test nuevo añadido en test_bmi.py.
