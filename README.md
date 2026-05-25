@@ -537,4 +537,132 @@ A continuación se muestra una captura de la aplicación web en ejecución.
 ![Diagrama Decorator](design_patterns/decorator_imagen.jpeg)
 
 ## Práctica 7: Refactorings
-[Refactorings](docs/refactorings.txt)
+
+---
+
+### REFACTORING 1
+
+#### (1) Bad smell o problema
+Primitive Obsession / uso de valores literales para representar el género.
+
+#### (2) Refactoring aplicado
+Replace Type Code with Enum.
+
+#### (3) Tipo/categoría
+Attribute refactoring / class refactoring.
+
+#### (4) Descripción
+Se ha creado el enumerado `Gender` para representar los posibles valores de género de forma más clara y segura. Se sustituyó el uso de cadenas de texto como `"male"` y `"female"` por valores tipados mediante Enum.
+
+#### (5) Cambios manuales
+- 1 clase nueva
+- Modificación de los métodos `ibw` y `bmr`
+- Actualización del import correspondiente
+
+---
+
+### REFACTORING 2
+
+#### (1) Bad smell o problema
+Inconsistencia entre implementación y pruebas unitarias.
+
+#### (2) Refactoring aplicado
+Replace Literal with Enum / Update Method Calls.
+
+#### (3) Tipo/categoría
+Test refactoring.
+
+#### (4) Descripción
+Se actualizaron los tests unitarios relacionados con IBW y BMR para utilizar el enum `Gender` en lugar de cadenas literales. Esto mantiene la coherencia entre las pruebas y el nuevo diseño de la aplicación.
+
+#### (5) Cambios manuales
+- 2 archivos de tests modificados
+- Actualización de las llamadas que recibían valores de género
+
+---
+
+### REFACTORING 3
+
+#### (1) Bad smell o problema
+Primitive Obsession. La clasificación completa del BMI se representaba mediante cadenas de texto, por ejemplo `"Normal"`, `"Overweight"` u `"Obesity Class I"`.
+
+#### (2) Refactoring aplicado
+Extract Class, Extract Method y Add Method to Class.
+
+#### (3) Tipo/categoría
+Class refactoring y Method refactoring.
+
+#### (4) Descripción
+Se ha creado el enum `BMICategory` con todas las categorías posibles del BMI. La clase `HealthCalcImpl` ahora calcula la categoría mediante el método `bmi_category(bmi)`, que devuelve un valor de `BMICategory` en lugar de trabajar directamente con strings. El método `bmi_full_classification` se mantiene para conservar la compatibilidad con los tests existentes.
+
+#### (5) Cambios manuales
+- 1 fichero nuevo creado: `bmi_category.py`
+- 1 método añadido en `HealthCalc`: `category(person)`
+- 3 métodos añadidos o modificados en `HealthCalcImpl`
+- 2 tests nuevos añadidos
+
+---
+
+### REFACTORING 4
+
+#### (1) Bad smell o problema
+Falta de correspondencia entre el diseño y la implementación. El cálculo del Body Mass Index ya existía como `bmi_person(person)`, pero no había una interfaz específica que representara el concepto `BodyMassIndex`.
+
+#### (2) Refactoring aplicado
+Extract Interface / Add Method to Class.
+
+#### (3) Tipo/categoría
+Class refactoring y Method refactoring.
+
+#### (4) Descripción
+Se ha creado una nueva interfaz `BodyMassIndex` para representar el cálculo del índice de masa corporal de una persona. La clase `HealthCalcImpl` implementa esta interfaz y añade el método `body_mass_index(person)`, que delega en `bmi_person(person)`.
+
+#### (5) Cambios manuales
+- 1 fichero nuevo creado: `body_mass_index.py`
+- 1 import añadido en `HealthCalcImpl`
+- 1 interfaz añadida a la herencia de `HealthCalcImpl`
+- 1 método nuevo añadido en `HealthCalcImpl`
+- 1 test nuevo añadido en `test_bmi.py`
+
+---
+
+### REFACTORING 5
+
+#### (1) Bad smell o problema
+Long Parameter List / Data Clumps. Los métodos `bmi`, `ibw` y `bmr` recibían varios datos sueltos de una persona.
+
+#### (2) Refactoring aplicado
+Introduce Parameter Object y Extract Interface.
+
+#### (3) Tipo/categoría
+Method refactoring / class refactoring.
+
+#### (4) Descripción
+Se ha creado la interfaz `Person` para agrupar los datos personales necesarios en los cálculos: peso, altura, género y edad. Además, se creó una implementación concreta `PersonImpl` para poder usar objetos `Person` en los métodos y en los tests.
+
+#### (5) Cambios manuales
+- 2 clases nuevas
+- Creación de métodos `bmi_person`, `ibw_person` y `bmr_person`
+- Actualización de los tests afectados
+
+---
+
+### REFACTORING 6
+
+#### (1) Bad smell o problema
+Código poco flexible y acoplamiento a parámetros primitivos en los cálculos de salud.
+
+#### (2) Refactoring aplicado
+Encapsulate Data / Replace Primitive with Object.
+
+#### (3) Tipo/categoría
+Attribute refactoring / method refactoring.
+
+#### (4) Descripción
+Se modificaron los tests y los métodos refactorizados para trabajar con objetos `Person` en lugar de pasar peso, altura, edad y género como valores separados. Esto mejora la legibilidad y facilita añadir nuevas métricas en el futuro.
+
+#### (5) Cambios manuales
+- Actualización de 3 archivos de test
+- Modificación de imports
+- Sustitución de llamadas antiguas por llamadas a `bmi_person`, `ibw_person` y `bmr_person`
+
