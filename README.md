@@ -381,19 +381,25 @@ Estas pruebas garantizan:
 
 ### Preparación del entorno
 1. Clonar este repositorio: `git clone https://github.com/IngSoftAvanz/healthcalc.git`
-2. Desplazarse a la carpeta del proyecto:
+2. Desplazarse a la carpeta del proyecto:  
    `cd healthcalc/python-project-healthcalc`
-3. Crear entorno virtual: `python -m venv env` (esto crea una carpeta `env` para el entorno virtual)
+3. Crear entorno virtual: `python -m venv env`
 4. Activar el entorno virtual:
-    - En Windows: `.\env\Scripts\Activate`
-    - En Linux: `. env/bin/activate`
+   - En Windows: `.\env\Scripts\Activate`
+   - En Linux: `. env/bin/activate`
 5. Instalar dependencias: `pip install -r requirements.txt`
 
 ### Ejecución
-- Ejecutar la aplicación: `python main.py <número>`
-- Ejecutar los tests: `pytest -v`
-- Ejecutar los tests con informe de cobertura: `pytest -v --cov=factorial --cov-report=html tests/`
 
+Una vez instalado el entorno y las dependencias, se puede ejecutar la aplicación web con el siguiente comando:
+
+python main_web.py
+
+-Una vez ejecutado el comando, podemos acceder a la aplicación pulsando el enlace resultante en la terminal: http://127.0.0.1:5000/
+
+-Para la ejecución de los tests usamos el comando: pytest -v
+
+-Conviene tener instalada la librería "flask" para la ejecución de la app, si no la tiene instalada, la puede instalar con el comando correspondiente en la terminal: pip install flask
 </details>
 
 
@@ -419,3 +425,113 @@ Estas pruebas garantizan:
 - Ejecutar los tests con informe de cobertura (previamente configurado en pom.xml): `mvn test`
 
 </details>
+
+## Behaviour Driven Development
+
+<details>
+<summary><b>IBW - Ideal Body Weight (Peso Corporal Ideal)</b></summary>
+
+### Historia de usuario
+Como usuario de la calculadora de salud,  
+quiero calcular mi peso corporal ideal,  
+para conocer un peso recomendado según mi altura y sexo.
+
+### Escenarios
+
+- Cálculo válido para hombre  
+- Cálculo válido para mujer  
+- Altura negativa  
+- Altura igual a cero  
+- Sexo inválido  
+
+### Fichero feature  
+[ibw.feature](python-project-healthcalc/features/ibw.feature)
+
+</details>
+
+<details>
+<summary><b>BMI - Body Mass Index (Índice de Masa Corporal)</b></summary>
+
+### Historia de usuario
+Como usuario de la calculadora de salud,
+quiero calcular mi índice de masa corporal,
+para conocer si mi peso está en un rango adecuado según mi altura.
+
+### Escenarios
+
+- Cálculo válido del BMI
+- Cálculo válido del BMI con otro valor
+- Peso negativo
+- Peso igual a cero
+- Altura negativa
+- Altura igual a cero 
+
+### Fichero feature  
+[bmi.feature](python-project-healthcalc/features/bmi.feature)
+
+</details>
+<details>
+<summary><b>BMI Full - Clasificación completa del Índice de Masa Corporal</b></summary>
+
+### Historia de usuario
+Como usuario de la calculadora de salud,  
+quiero conocer la clasificación completa de mi índice de masa corporal,  
+para entender mejor mi estado nutricional.
+
+### Escenarios
+
+- Clasificación correcta del BMI Full
+- BMI inválido por valor no permitido
+- BMI no es un número real finito
+
+### Fichero feature  
+[bmi_full.feature](python-project-healthcalc/features/bmi_full.feature)
+
+</details>
+
+<details>
+<summary><b>BMR - Basal Metabolic Rate (Mifflin-St Jeor)</b></summary>
+
+### Historia de usuario
+Como usuario de la calculadora de salud,  
+quiero calcular mi tasa metabólica basal usando la fórmula de Mifflin-St Jeor,  
+para estimar las calorías mínimas que necesito en estado de reposo.
+
+### Escenarios
+
+- Cálculo válido para hombre  
+- Cálculo válido para mujer  
+- Peso negativo  
+- Peso igual a cero  
+- Altura negativa  
+- Altura igual a cero  
+
+### Fichero feature  
+[bmr.feature](python-project-healthcalc/features/bmr.feature)
+
+</details>
+
+## Interfaz Gráfica de Usuario
+
+A continuación se muestra una captura de la aplicación web en ejecución.
+
+### Ejemplo de uso
+
+![BMI App](doc/gui/BMI_APP_OK.png)
+![IBW App](doc/gui/IBW_APP_OK.PNG)
+![BMR App](doc/gui/MIFFLIN_APP_OK.PNG)
+
+## Práctica 6: Patrones de diseño
+
+### Apartado 2: Singleton
+![Diagrama Singleton](design_patterns/singleton_imagen.jpeg)
+
+### Apartado 3.a: Adapter
+
+![Diagrama Adapter](design_patterns/adapter_imagen.jpeg)
+
+### Apartado 3.b: Proxy
+![Diagrama Proxy](design_patterns/proxy_imagen.jpeg)
+
+### Apartado 3.c: Decorator
+![Diagrama Decorator](design_patterns/decorator_imagen.jpeg)

@@ -1,5 +1,7 @@
 from abc import ABC, abstractmethod
 from healthcalc import InvalidHealthDataException
+from healthcalc.person import Person
+from healthcalc.bmi_category import BMICategory
 
 
 class HealthCalc(ABC):
@@ -14,6 +16,8 @@ class HealthCalc(ABC):
         :raises InvalidHealthDataException: If data is out of range
         """
         pass
+
+
 
     @abstractmethod
     def bmi(self, weight: float, height: float) -> float:
@@ -50,4 +54,9 @@ class HealthCalc(ABC):
             """
         pass
     
+    @abstractmethod
+    def category(self, person: Person) -> BMICategory:
+        """Return the BMI category of a person."""
+        pass
+
     
