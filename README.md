@@ -535,3 +535,6 @@ A continuación se muestra una captura de la aplicación web en ejecución.
 
 ### Apartado 3.c: Decorator
 ![Diagrama Decorator](design_patterns/decorator_imagen.jpeg)
+
+## Práctica 8:Nuevo Proyecto HealthCalc
+![alt text](image.png)
